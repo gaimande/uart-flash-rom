@@ -1,15 +1,15 @@
-0	1	mikroCPIC1618.exe -MSF -DBG -pP16F877A -GC -DL -O11111115 -fo20 -N"E:\Code Project\uart-flash-rom\main.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"E:\Code Project\uart-flash-rom\" "main.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_CString.mcl" "__Lib_Conversions.mcl" "__Lib_FLASH_RW.mcl" "__Lib_UART_c67.mcl"	 
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F877A -GC -DL -O11111115 -fo20 -N"E:\Code Project\uart-flash-rom\main.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"E:\Code Project\uart-flash-rom\" "main.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_CString.mcl" "__Lib_CMath.mcl" "__Lib_Conversions.mcl" "__Lib_FLASH_RW.mcl" "__Lib_UART_c67.mcl"	 
 hint: 0	1139	Available RAM: 352 [bytes], Available ROM: 8192 [bytes]	 
-diagnostics: 0	126	All files Preprocessed in 32 ms	 
+diagnostics: 0	126	All files Preprocessed in 31 ms	 
 diagnostics: 0	122	Compilation Started	main.c
 warning: 26	1509	Generated baud rate is 9615 bps (error = 0.16 percent)	main.c
 warning: 54	1505	Suspicious pointer conversion	main.c
 diagnostics: 102	123	Compiled Successfully	main.c
-diagnostics: 0	127	All files Compiled in 93 ms	 
-hint: 0	1144	Used RAM (bytes): 120 (34%)  Free RAM (bytes): 232 (66%)	Used RAM (bytes): 120 (34%)  Free RAM (bytes): 232 (66%)
-hint: 0	1144	Used ROM (program words): 883 (11%)  Free ROM (program words): 7309 (89%)	Used ROM (program words): 883 (11%)  Free ROM (program words): 7309 (89%)
+diagnostics: 0	127	All files Compiled in 78 ms	 
+hint: 0	1144	Used RAM (bytes): 160 (45%)  Free RAM (bytes): 192 (55%)	Used RAM (bytes): 160 (45%)  Free RAM (bytes): 192 (55%)
+hint: 0	1144	Used ROM (program words): 869 (11%)  Free ROM (program words): 7323 (89%)	Used ROM (program words): 869 (11%)  Free ROM (program words): 7323 (89%)
 diagnostics: 0	125	Project Linked Successfully	main.mcppi
 hint: 0	1004	COFF file successfully generated	COFF file successfully generated
-diagnostics: 0	128	Linked in 219 ms	 
-diagnostics: 0	129	Project 'main.mcppi' completed: 375 ms	 
-diagnostics: 0	103	Finished successfully: 12 Thg7 2012, 07:22:52	main.mcppi
+diagnostics: 0	128	Linked in 218 ms	 
+diagnostics: 0	129	Project 'main.mcppi' completed: 343 ms	 
+diagnostics: 0	103	Finished successfully: 12 Thg7 2012, 09:53:04	main.mcppi
