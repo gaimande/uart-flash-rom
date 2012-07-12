@@ -1,7 +1,7 @@
 /* Global variable */
 #define MAXLINE 1024
 char  uart_rd,total[3];
-char i,j,k;
+unsigned int i,j,k;
 char dat_uart[8];
 unsigned int addr,data_;
 
@@ -54,10 +54,10 @@ void main()
 			FLASH_Write(addr+i*4,dat_uart);
 			if ((uart_rd == 'I') || (uart_rd == 'D'))
 				break;
-			//PORTB = 0x00;
-			//Delay_ms(50);
-			//PORTB = 0xFF;
-			//Delay_ms(50);
+			PORTB = 0x00;
+			Delay_ms(50);
+			PORTB = 0xFF;
+			Delay_ms(50);
 		}
 
 		addr = 0x0500;
@@ -67,7 +67,7 @@ void main()
 			Delay_us(10);
 			UART1_Write(data_);
 			UART1_Write(data_ >> 8);
-			//Delay_ms(500);
+			Delay_ms(50);
 		}
 		if (0<j<8)
 		{
@@ -91,12 +91,13 @@ void main()
 				}
 				UART1_Write(data_);
 				UART1_Write(data_ >> 8);
-				//Delay_ms(500);
+				Delay_ms(50);
 			}
 		}
 		UART1_Write_Text("\n\rTotal of bytes in the message: ");
 		IntToStr(i*8 + j,total);
 		UART1_Write_Text(total);
 		UART1_Write_Text("\n\r-----------------------------------\r\n");
+		while(1);
 	}
 }
