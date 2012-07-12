@@ -12,6 +12,7 @@ acken
 acken_bit
 ackstat
 ackstat_bit
+acos
 adcon0
 adcon1
 adcs0
@@ -34,6 +35,9 @@ adon
 adon_bit
 adresh
 adresl
+asin
+atan
+atan2
 b0
 b1
 b2
@@ -106,6 +110,7 @@ ccpr1l
 ccpr2
 ccpr2h
 ccpr2l
+ceil
 cis
 cis_bit
 cke
@@ -125,6 +130,8 @@ cmif
 cmif_bit
 comfrem
 compare_double
+cos
+cosh
 cren
 cren_bit
 csrc
@@ -203,13 +210,17 @@ eeif_bit
 eepgd
 eepgd_bit
 equals_double
+exp
 f
+fabs
 ferr
 ferr_bit
 fixsign32
 flash_read
 flash_write
 floattostr
+floor
+frexp
 fsr
 fsrptr
 gcen
@@ -252,6 +263,9 @@ irp
 irp_bit
 j
 k
+ldexp
+log
+log10
 longint2double
 longinttohex
 longinttostrwithzeros
@@ -267,6 +281,7 @@ memcpy
 memchr
 memmove
 memset
+modf
 mul_16x16_s
 mul_16x16_u
 mul_32x32_fp
@@ -336,6 +351,7 @@ portb
 portc
 portd
 porte
+pow
 pr2
 ps0
 ps0_bit
@@ -483,11 +499,14 @@ setfun32
 setiov3224
 shorttohex
 shorttostr
+sin
+sinh
 smp
 smp_bit
 spbrg
 spen
 spen_bit
+sqrt
 sren
 sren_bit
 sspadd
@@ -554,6 +573,8 @@ t2ckps0_bit
 t2ckps1
 t2ckps1_bit
 t2con
+tan
+tanh
 tmr0
 tmr0ie
 tmr0ie_bit

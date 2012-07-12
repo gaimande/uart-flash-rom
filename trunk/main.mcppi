@@ -40,11 +40,12 @@ Count=0
 [PLDS]
 Count=0
 [Useses]
-Count=4
+Count=5
 File0=C_String
 File1=UART
 File2=FLASH
 File3=Conversions
+File4=C_Math
 [EXPANDED NODES]
 Node1=Sources
 Count=1
