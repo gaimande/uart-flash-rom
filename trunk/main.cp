@@ -3,7 +3,7 @@
 
 char uart_rd,total[3];
 unsigned int i,j,k;
-char dat_uart[8];
+char dat_uart[8]={0,0,0,0,0,0,0,0};
 unsigned int addr,data_;
 
 int choose (char m)
@@ -41,7 +41,7 @@ void main()
  UART1_Write_Text("Your message is: ");
  for(i=0; i<  1024 /8; i++)
  {
- for(j=0; j<8; j++)
+ for(j=0; j<8; j+=2)
  {
  Revieve_data:
  if (UART1_Data_Ready())
@@ -67,36 +67,18 @@ void main()
  data_ = FLASH_Read(addr++);
  Delay_us(10);
  UART1_Write(data_);
- UART1_Write(data_ >> 8);
- Delay_ms(50);
  }
- if (0<j<8)
+ if (1<j<9)
  {
- for (k=0; k<choose(j); k++)
+ for (k=0; k < j/2; k++)
  {
  data_ = FLASH_Read(addr++);
  Delay_us(10);
- if(k == (choose(j)-1))
- {
- if((j%2)==0)
- {
  UART1_Write(data_);
- UART1_Write(data_ >> 8);
- break;
- }
- else
- {
- UART1_Write(data_);
- break;
- }
- }
- UART1_Write(data_);
- UART1_Write(data_ >> 8);
- Delay_ms(50);
  }
  }
  UART1_Write_Text("\n\rTotal of bytes in the message: ");
- IntToStr(i*8 + j,total);
+ IntToStr(i*4 + j/2,total);
  UART1_Write_Text(total);
  UART1_Write_Text("\n\r-----------------------------------\r\n");
  while(1);
