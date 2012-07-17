@@ -9,7 +9,6 @@ main
 	FLASH_Write
 	FLASH_Read
 	UART1_Write
-	choose
 	IntToStr
 		WordToStr
 			Div_16x16_U

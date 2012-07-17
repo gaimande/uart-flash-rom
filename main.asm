@@ -6,13 +6,13 @@ _choose:
 	MOVF       FARG_choose_m+0, 0
 	XORLW      1
 	BTFSC      STATUS+0, 2
-	GOTO       L__choose51
+	GOTO       L__choose46
 	MOVF       FARG_choose_m+0, 0
 	XORLW      2
 	BTFSC      STATUS+0, 2
-	GOTO       L__choose51
+	GOTO       L__choose46
 	GOTO       L_choose2
-L__choose51:
+L__choose46:
 	MOVLW      1
 	MOVWF      R0+0
 	MOVLW      0
@@ -23,13 +23,13 @@ L_choose2:
 	MOVF       FARG_choose_m+0, 0
 	XORLW      3
 	BTFSC      STATUS+0, 2
-	GOTO       L__choose50
+	GOTO       L__choose45
 	MOVF       FARG_choose_m+0, 0
 	XORLW      4
 	BTFSC      STATUS+0, 2
-	GOTO       L__choose50
+	GOTO       L__choose45
 	GOTO       L_choose6
-L__choose50:
+L__choose45:
 	MOVLW      2
 	MOVWF      R0+0
 	MOVLW      0
@@ -40,13 +40,13 @@ L_choose6:
 	MOVF       FARG_choose_m+0, 0
 	XORLW      5
 	BTFSC      STATUS+0, 2
-	GOTO       L__choose49
+	GOTO       L__choose44
 	MOVF       FARG_choose_m+0, 0
 	XORLW      6
 	BTFSC      STATUS+0, 2
-	GOTO       L__choose49
+	GOTO       L__choose44
 	GOTO       L_choose10
-L__choose49:
+L__choose44:
 	MOVLW      3
 	MOVWF      R0+0
 	MOVLW      0
@@ -120,23 +120,23 @@ L_main17:
 	MOVLW      0
 	SUBWF      _i+1, 0
 	BTFSS      STATUS+0, 2
-	GOTO       L__main54
+	GOTO       L__main49
 	MOVLW      128
 	SUBWF      _i+0, 0
-L__main54:
+L__main49:
 	BTFSC      STATUS+0, 0
 	GOTO       L_main18
-;main.c,43 :: 		for(j=0; j<8; j++)
+;main.c,43 :: 		for(j=0; j<8; j+=2)
 	CLRF       _j+0
 	CLRF       _j+1
 L_main20:
 	MOVLW      0
 	SUBWF      _j+1, 0
 	BTFSS      STATUS+0, 2
-	GOTO       L__main55
+	GOTO       L__main50
 	MOVLW      8
 	SUBWF      _j+0, 0
-L__main55:
+L__main50:
 	BTFSC      STATUS+0, 0
 	GOTO       L_main21
 ;main.c,45 :: 		Revieve_data:
@@ -159,13 +159,13 @@ L_main24:
 	MOVF       _uart_rd+0, 0
 	XORLW      73
 	BTFSC      STATUS+0, 2
-	GOTO       L__main53
+	GOTO       L__main48
 	MOVF       _uart_rd+0, 0
 	XORLW      68
 	BTFSC      STATUS+0, 2
-	GOTO       L__main53
+	GOTO       L__main48
 	GOTO       L_main27
-L__main53:
+L__main48:
 ;main.c,51 :: 		break;
 	GOTO       L_main21
 L_main27:
@@ -175,9 +175,10 @@ L_main27:
 	MOVWF      FSR
 	MOVF       _uart_rd+0, 0
 	MOVWF      INDF+0
-;main.c,43 :: 		for(j=0; j<8; j++)
-	INCF       _j+0, 1
-	BTFSC      STATUS+0, 2
+;main.c,43 :: 		for(j=0; j<8; j+=2)
+	MOVLW      2
+	ADDWF      _j+0, 1
+	BTFSC      STATUS+0, 0
 	INCF       _j+1, 1
 ;main.c,53 :: 		}
 	GOTO       L_main20
@@ -208,13 +209,13 @@ L_main21:
 	MOVF       _uart_rd+0, 0
 	XORLW      73
 	BTFSC      STATUS+0, 2
-	GOTO       L__main52
+	GOTO       L__main47
 	MOVF       _uart_rd+0, 0
 	XORLW      68
 	BTFSC      STATUS+0, 2
-	GOTO       L__main52
+	GOTO       L__main47
 	GOTO       L_main30
-L__main52:
+L__main47:
 ;main.c,56 :: 		break;
 	GOTO       L_main18
 L_main30:
@@ -284,10 +285,10 @@ L_main33:
 	MOVF       R1+1, 0
 	SUBWF      _k+1, 0
 	BTFSS      STATUS+0, 2
-	GOTO       L__main56
+	GOTO       L__main51
 	MOVF       R1+0, 0
 	SUBWF      _k+0, 0
-L__main56:
+L__main51:
 	BTFSC      STATUS+0, 0
 	GOTO       L_main34
 ;main.c,66 :: 		data_ = FLASH_Read(addr++);
@@ -314,69 +315,50 @@ L_main36:
 	MOVF       _data_+0, 0
 	MOVWF      FARG_UART1_Write_data_+0
 	CALL       _UART1_Write+0
-;main.c,69 :: 		UART1_Write(data_ >> 8);
-	MOVF       _data_+1, 0
-	MOVWF      R0+0
-	CLRF       R0+1
-	MOVF       R0+0, 0
-	MOVWF      FARG_UART1_Write_data_+0
-	CALL       _UART1_Write+0
-;main.c,70 :: 		Delay_ms(50);
-	MOVLW      2
-	MOVWF      R11+0
-	MOVLW      69
-	MOVWF      R12+0
-	MOVLW      169
-	MOVWF      R13+0
-L_main37:
-	DECFSZ     R13+0, 1
-	GOTO       L_main37
-	DECFSZ     R12+0, 1
-	GOTO       L_main37
-	DECFSZ     R11+0, 1
-	GOTO       L_main37
-	NOP
-	NOP
 ;main.c,64 :: 		for (k = 0; k < i*4; k++)
 	INCF       _k+0, 1
 	BTFSC      STATUS+0, 2
 	INCF       _k+1, 1
-;main.c,71 :: 		}
+;main.c,69 :: 		}
 	GOTO       L_main33
 L_main34:
-;main.c,72 :: 		if (0<j<8)
+;main.c,70 :: 		if (1<j<9)
 	MOVF       _j+1, 0
 	SUBLW      0
 	BTFSS      STATUS+0, 2
-	GOTO       L__main57
+	GOTO       L__main52
 	MOVF       _j+0, 0
-	SUBLW      0
-L__main57:
+	SUBLW      1
+L__main52:
 	MOVLW      1
 	BTFSC      STATUS+0, 0
 	MOVLW      0
 	MOVWF      R1+0
-	MOVLW      8
+	MOVLW      9
 	SUBWF      R1+0, 0
 	BTFSC      STATUS+0, 0
-	GOTO       L_main38
-;main.c,74 :: 		for (k=0; k<choose(j); k++)
+	GOTO       L_main37
+;main.c,72 :: 		for (k=0; k < j/2; k++)
 	CLRF       _k+0
 	CLRF       _k+1
-L_main39:
+L_main38:
 	MOVF       _j+0, 0
-	MOVWF      FARG_choose_m+0
-	CALL       _choose+0
-	MOVF       R0+1, 0
+	MOVWF      R1+0
+	MOVF       _j+1, 0
+	MOVWF      R1+1
+	RRF        R1+1, 1
+	RRF        R1+0, 1
+	BCF        R1+1, 7
+	MOVF       R1+1, 0
 	SUBWF      _k+1, 0
 	BTFSS      STATUS+0, 2
-	GOTO       L__main58
-	MOVF       R0+0, 0
+	GOTO       L__main53
+	MOVF       R1+0, 0
 	SUBWF      _k+0, 0
-L__main58:
+L__main53:
 	BTFSC      STATUS+0, 0
-	GOTO       L_main40
-;main.c,76 :: 		data_ = FLASH_Read(addr++);
+	GOTO       L_main39
+;main.c,74 :: 		data_ = FLASH_Read(addr++);
 	MOVF       _addr+0, 0
 	MOVWF      FARG_FLASH_Read_address+0
 	MOVF       _addr+1, 0
@@ -389,115 +371,31 @@ L__main58:
 	INCF       _addr+0, 1
 	BTFSC      STATUS+0, 2
 	INCF       _addr+1, 1
-;main.c,77 :: 		Delay_us(10);
+;main.c,75 :: 		Delay_us(10);
 	MOVLW      16
 	MOVWF      R13+0
-L_main42:
+L_main41:
 	DECFSZ     R13+0, 1
-	GOTO       L_main42
+	GOTO       L_main41
 	NOP
-;main.c,78 :: 		if(k == (choose(j)-1))
-	MOVF       _j+0, 0
-	MOVWF      FARG_choose_m+0
-	CALL       _choose+0
-	MOVLW      1
-	SUBWF      R0+0, 0
-	MOVWF      R2+0
-	MOVLW      0
-	BTFSS      STATUS+0, 0
-	ADDLW      1
-	SUBWF      R0+1, 0
-	MOVWF      R2+1
-	MOVF       _k+1, 0
-	XORWF      R2+1, 0
-	BTFSS      STATUS+0, 2
-	GOTO       L__main59
-	MOVF       R2+0, 0
-	XORWF      _k+0, 0
-L__main59:
-	BTFSS      STATUS+0, 2
-	GOTO       L_main43
-;main.c,80 :: 		if((j%2)==0)
-	MOVLW      1
-	ANDWF      _j+0, 0
-	MOVWF      R1+0
-	MOVF       _j+1, 0
-	MOVWF      R1+1
-	MOVLW      0
-	ANDWF      R1+1, 1
-	MOVLW      0
-	XORWF      R1+1, 0
-	BTFSS      STATUS+0, 2
-	GOTO       L__main60
-	MOVLW      0
-	XORWF      R1+0, 0
-L__main60:
-	BTFSS      STATUS+0, 2
-	GOTO       L_main44
-;main.c,82 :: 		UART1_Write(data_);
+;main.c,76 :: 		UART1_Write(data_);
 	MOVF       _data_+0, 0
 	MOVWF      FARG_UART1_Write_data_+0
 	CALL       _UART1_Write+0
-;main.c,83 :: 		UART1_Write(data_ >> 8);
-	MOVF       _data_+1, 0
-	MOVWF      R0+0
-	CLRF       R0+1
-	MOVF       R0+0, 0
-	MOVWF      FARG_UART1_Write_data_+0
-	CALL       _UART1_Write+0
-;main.c,84 :: 		break;
-	GOTO       L_main40
-;main.c,85 :: 		}
-L_main44:
-;main.c,88 :: 		UART1_Write(data_);
-	MOVF       _data_+0, 0
-	MOVWF      FARG_UART1_Write_data_+0
-	CALL       _UART1_Write+0
-;main.c,89 :: 		break;
-	GOTO       L_main40
-;main.c,91 :: 		}
-L_main43:
-;main.c,92 :: 		UART1_Write(data_);
-	MOVF       _data_+0, 0
-	MOVWF      FARG_UART1_Write_data_+0
-	CALL       _UART1_Write+0
-;main.c,93 :: 		UART1_Write(data_ >> 8);
-	MOVF       _data_+1, 0
-	MOVWF      R0+0
-	CLRF       R0+1
-	MOVF       R0+0, 0
-	MOVWF      FARG_UART1_Write_data_+0
-	CALL       _UART1_Write+0
-;main.c,94 :: 		Delay_ms(50);
-	MOVLW      2
-	MOVWF      R11+0
-	MOVLW      69
-	MOVWF      R12+0
-	MOVLW      169
-	MOVWF      R13+0
-L_main46:
-	DECFSZ     R13+0, 1
-	GOTO       L_main46
-	DECFSZ     R12+0, 1
-	GOTO       L_main46
-	DECFSZ     R11+0, 1
-	GOTO       L_main46
-	NOP
-	NOP
-;main.c,74 :: 		for (k=0; k<choose(j); k++)
+;main.c,72 :: 		for (k=0; k < j/2; k++)
 	INCF       _k+0, 1
 	BTFSC      STATUS+0, 2
 	INCF       _k+1, 1
-;main.c,95 :: 		}
-	GOTO       L_main39
-L_main40:
-;main.c,96 :: 		}
-L_main38:
-;main.c,97 :: 		UART1_Write_Text("\n\rTotal of bytes in the message: ");
+;main.c,77 :: 		}
+	GOTO       L_main38
+L_main39:
+;main.c,78 :: 		}
+L_main37:
+;main.c,79 :: 		UART1_Write_Text("\n\rTotal of bytes in the message: ");
 	MOVLW      ?lstr3_main+0
 	MOVWF      FARG_UART1_Write_Text_uart_text+0
 	CALL       _UART1_Write_Text+0
-;main.c,98 :: 		IntToStr(i*8 + j,total);
+;main.c,80 :: 		IntToStr(i*4 + j/2,total);
 	MOVF       _i+0, 0
 	MOVWF      FARG_IntToStr_input+0
 	MOVF       _i+1, 0
@@ -508,29 +406,33 @@ L_main38:
 	RLF        FARG_IntToStr_input+0, 1
 	RLF        FARG_IntToStr_input+1, 1
 	BCF        FARG_IntToStr_input+0, 0
-	RLF        FARG_IntToStr_input+0, 1
-	RLF        FARG_IntToStr_input+1, 1
-	BCF        FARG_IntToStr_input+0, 0
 	MOVF       _j+0, 0
-	ADDWF      FARG_IntToStr_input+0, 1
+	MOVWF      R0+0
 	MOVF       _j+1, 0
+	MOVWF      R0+1
+	RRF        R0+1, 1
+	RRF        R0+0, 1
+	BCF        R0+1, 7
+	MOVF       R0+0, 0
+	ADDWF      FARG_IntToStr_input+0, 1
+	MOVF       R0+1, 0
 	BTFSC      STATUS+0, 0
 	ADDLW      1
 	ADDWF      FARG_IntToStr_input+1, 1
 	MOVLW      _total+0
 	MOVWF      FARG_IntToStr_output+0
 	CALL       _IntToStr+0
-;main.c,99 :: 		UART1_Write_Text(total);
+;main.c,81 :: 		UART1_Write_Text(total);
 	MOVLW      _total+0
 	MOVWF      FARG_UART1_Write_Text_uart_text+0
 	CALL       _UART1_Write_Text+0
-;main.c,100 :: 		UART1_Write_Text("\n\r-----------------------------------\r\n");
+;main.c,82 :: 		UART1_Write_Text("\n\r-----------------------------------\r\n");
 	MOVLW      ?lstr4_main+0
 	MOVWF      FARG_UART1_Write_Text_uart_text+0
 	CALL       _UART1_Write_Text+0
-;main.c,101 :: 		while(1);
-L_main47:
-	GOTO       L_main47
-;main.c,103 :: 		}
+;main.c,83 :: 		while(1);
+L_main42:
+	GOTO       L_main42
+;main.c,85 :: 		}
 	GOTO       $+0
 ; end of _main
