@@ -1,0 +1,1 @@
+Recieve data from UART, store in Flash ROM, arrange by decreasing or increasing and send back to host
